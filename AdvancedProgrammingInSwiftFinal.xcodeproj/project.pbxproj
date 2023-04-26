@@ -19,6 +19,7 @@
 		6791E0D529F8A39B00E699D0 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6791E0D429F8A39B00E699D0 /* MenuItem.swift */; };
 		67DCBE6829F90E5500243905 /* AsyncImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DCBE6729F90E5500243905 /* AsyncImageLoader.swift */; };
 		67DCBE6A29F925EB00243905 /* MenuItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DCBE6929F925EB00243905 /* MenuItemDetailsView.swift */; };
+		67DCBE6C29F934E800243905 /* MenuItemOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DCBE6B29F934E800243905 /* MenuItemOptionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		6791E0D429F8A39B00E699D0 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		67DCBE6729F90E5500243905 /* AsyncImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageLoader.swift; sourceTree = "<group>"; };
 		67DCBE6929F925EB00243905 /* MenuItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailsView.swift; sourceTree = "<group>"; };
+		67DCBE6B29F934E800243905 /* MenuItemOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemOptionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				6791E0D029F8A0FE00E699D0 /* MenuCategory.swift */,
 				67DCBE6729F90E5500243905 /* AsyncImageLoader.swift */,
 				67DCBE6929F925EB00243905 /* MenuItemDetailsView.swift */,
+				67DCBE6B29F934E800243905 /* MenuItemOptionsView.swift */,
 				6791E0D429F8A39B00E699D0 /* MenuItem.swift */,
 				6791E0D229F8A2F200E699D0 /* Ingredient.swift */,
 				6791E0AA29F84C2400E699D0 /* Assets.xcassets */,
@@ -279,6 +282,7 @@
 				6791E0A729F84C2300E699D0 /* AdvancedProgrammingInSwiftFinalApp.swift in Sources */,
 				6791E0D529F8A39B00E699D0 /* MenuItem.swift in Sources */,
 				67DCBE6A29F925EB00243905 /* MenuItemDetailsView.swift in Sources */,
+				67DCBE6C29F934E800243905 /* MenuItemOptionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

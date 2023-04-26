@@ -11,11 +11,10 @@ import Combine
 
 let categories = ["Food", "Drinks", "Dessert"]
 
- 
-
 struct ContentView: View {
     let cache = ImageCache()
     @StateObject var viewModel = MenuViewViewModel()
+    @State var isShowingOptions = false
     
     var body: some View {
         let gridItem = GridItem(.flexible())
@@ -67,6 +66,16 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Menus")
+            .navigationBarItems(
+                trailing: Button(action: {
+                    self.isShowingOptions = true
+                }) {
+                    Image(systemName: "gearshape")
+                }
+                .sheet(isPresented: $isShowingOptions) {
+                    MenuItemOptionsView()
+                }
+            )
         }
     }
     
@@ -83,6 +92,7 @@ struct ContentView: View {
        }
    }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
