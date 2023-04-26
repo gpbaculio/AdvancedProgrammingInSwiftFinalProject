@@ -20,17 +20,15 @@ struct MenuItemOptionsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Second Screen")
-                    .font(.largeTitle)
-                    .padding()
+                Text("Selected Categories").font(.system(size: 16, weight: .semibold))
                 Toggle(isOn: $foodFilterSelected) {
-                    Text("Food")
+                    Text("Food").font(.system(size: 16, weight: .medium))
                 }
                 Toggle(isOn: $drinkFilterSelected) {
-                    Text("Drink")
+                    Text("Drink").font(.system(size: 16, weight: .medium))
                 }
                 Toggle(isOn: $dessertFilterSelected) {
-                    Text("Dessert")
+                    Text("Dessert").font(.system(size: 16, weight: .medium))
                 }
             }
             .navigationBarTitle("Filter")
@@ -41,6 +39,7 @@ struct MenuItemOptionsView: View {
                     Text("Done")
                 }
             )
+            .padding()
         }
     }
 }
