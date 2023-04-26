@@ -15,6 +15,9 @@ struct ContentView: View {
     let cache = ImageCache()
     @StateObject var viewModel = MenuViewViewModel()
     @State var isShowingOptions = false
+    @State private var foodFilterSelected = false
+    @State private var drinkFilterSelected = false
+    @State private var dessertFilterSelected = false
     
     var body: some View {
         let gridItem = GridItem(.flexible())
@@ -73,24 +76,52 @@ struct ContentView: View {
                     Image(systemName: "gearshape")
                 }
                 .sheet(isPresented: $isShowingOptions) {
-                    MenuItemOptionsView()
+                    MenuItemOptionsView(
+                       foodFilterSelected: $foodFilterSelected,
+                       drinkFilterSelected: $drinkFilterSelected,
+                       dessertFilterSelected: $dessertFilterSelected
+                   )
                 }
             )
         }
     }
     
     func menuItems(forCategoryIndex index: Int) -> [MenuItem] {
-       switch index {
-           case 0:
-               return viewModel.foodItems
-           case 1:
-               return viewModel.drinkItems
-           case 2:
-               return viewModel.dessertItems
-           default:
-               return []
-       }
-   }
+        var items = [MenuItem]()
+
+        switch index {
+        case 0:
+            items = viewModel.foodItems
+        case 1:
+            items = viewModel.drinkItems
+        case 2:
+            items = viewModel.dessertItems
+        default:
+            break
+        }
+        
+        if foodFilterSelected || drinkFilterSelected || dessertFilterSelected {
+            items = items.filter { item in
+                var shouldInclude = false
+                
+                if foodFilterSelected && item.menuCategory.rawValue == "Food" {
+                    shouldInclude = true
+                }
+                
+                if drinkFilterSelected && item.menuCategory.rawValue == "Drink" {
+                    shouldInclude = true
+                }
+                
+                if dessertFilterSelected && item.menuCategory.rawValue == "Dessert" {
+                    shouldInclude = true
+                }
+                
+                return shouldInclude
+            }
+        }
+
+        return items
+    }
 }
 
 
