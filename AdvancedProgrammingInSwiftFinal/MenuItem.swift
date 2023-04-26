@@ -16,7 +16,14 @@ class MenuItem: MenuItemProtocol {
     var price: Double
     var ingredients: [Ingredient]
     
-    init( title: String,image: String, menuCategory: MenuCategory,ordersCount: Int = 0,  price: Double, ingredients: [Ingredient]) {
+    init(
+        title: String,
+        image: String,
+        menuCategory: MenuCategory,
+        ordersCount: Int = 0,
+        price: Double,
+        ingredients: [Ingredient]
+    ) {
         self.id = UUID()
         self.title = title
         self.image = image
