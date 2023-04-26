@@ -6,29 +6,49 @@
 //
 
 import XCTest
+@testable import AdvancedProgrammingInSwiftFinal
 
 final class MenuItemTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMenuItemTitle() {
+        let title = "Spaghetti Carbonara"
+        let menuItem = MenuItem(
+            title: title,
+            image: "https://www.themealdb.com/images/media/meals/3xn7th1560453426.jpg",
+            menuCategory: .food,
+            ordersCount: 50,
+            price: 8.99,
+            ingredients: [.spinach, .broccoli]
+        )
+        
+        // Act
+        let menuItemTitle = menuItem.title
+        
+        // Assert
+        XCTAssertEqual(menuItemTitle, title, "Expect the menu item title to equal the initialized value")
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    func testMenuItemTitleInitializedWithIngredients() {
+        let title = "Spaghetti Carbonara"
+        let ingredients: [Ingredient] = [.spinach, .broccoli]
+        let menuItem = MenuItem(
+            title: title,
+            image: "https://www.themealdb.com/images/media/meals/3xn7th1560453426.jpg",
+            menuCategory: .food,
+            ordersCount: 50,
+            price: 8.99,
+            ingredients: ingredients
+        )
+        
+        // Act
+        let menuItemTitle = menuItem.title
+        
+        // Assert
+        XCTAssertEqual(menuItemTitle, title, "Expect the menu item title to equal the initialized value")
+        XCTAssertEqual(ingredients.count, menuItem.ingredients.count, "Same length with initialized value")
+           
+        for (element1, element2) in zip(ingredients, menuItem.ingredients) {
+            XCTAssertEqual(element1, element2)
         }
     }
 
