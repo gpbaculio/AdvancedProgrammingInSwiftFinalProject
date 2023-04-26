@@ -39,8 +39,7 @@ struct AsyncImage<Placeholder: View>: View {
         if let image = loader.image {
             Image(uiImage: image)
                 .resizable()
-                .aspectRatio(1.0, contentMode: .fit)
-                .cornerRadius(10)
+                .aspectRatio(1.0, contentMode: .fit) 
         } else {
             placeholder()
                 .onAppear(perform: loader.load)

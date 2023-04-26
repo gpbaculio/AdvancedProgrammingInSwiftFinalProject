@@ -11,6 +11,20 @@ import Combine
 
 let categories = ["Food", "Drinks", "Dessert"]
 
+let mainColor =  Color(
+     red: 73/255,
+     green: 94/255,
+     blue: 97/255,
+     opacity: 1
+ )
+
+ let secondaryColor =  Color(
+     red: 244/255,
+     green: 206/255,
+     blue: 20/255,
+     opacity: 1
+ )
+
 struct ContentView: View {
     let cache = ImageCache()
     @StateObject var viewModel = MenuViewViewModel()
@@ -18,6 +32,9 @@ struct ContentView: View {
     @State private var foodFilterSelected = false
     @State private var drinkFilterSelected = false
     @State private var dessertFilterSelected = false
+    @State private var sortByPrice = false
+    @State private var sortAlphabetically = false
+    @State private var popular = false
     
     var body: some View {
         let gridItem = GridItem(.flexible())
@@ -42,10 +59,13 @@ struct ContentView: View {
                                         AsyncImage(
                                             url: URL(string: item.image)!,
                                             placeholder: {
-                                                Image(systemName: "photo")
+                                                Image("Little Lemon logo")
                                                     .resizable()
-                                                    .aspectRatio(1, contentMode: .fit) 
-                                                    .foregroundColor(.black)
+                                                    .aspectRatio(1, contentMode: ContentMode.fit)
+                                                    .frame(maxWidth: .infinity)
+                                                    .scaledToFill()
+                                                    .padding()
+                                                    .border(mainColor,width: 1)
                                             },
                                             imageCache: cache
                                         )
@@ -55,11 +75,10 @@ struct ContentView: View {
                                             .frame(maxWidth: .infinity)
                                             .padding(.vertical, 8)
                                             .padding(.horizontal, 8)
-                                            .foregroundColor(.white)
-                                            .background(.black)
+                                            .foregroundColor(secondaryColor)
+                                            .background(mainColor)
                                             .padding(1)
                                             .lineLimit(1)
-                                            .cornerRadius(10)
                                     } 
                                 }
                             }
@@ -79,7 +98,10 @@ struct ContentView: View {
                     MenuItemOptionsView(
                        foodFilterSelected: $foodFilterSelected,
                        drinkFilterSelected: $drinkFilterSelected,
-                       dessertFilterSelected: $dessertFilterSelected
+                       dessertFilterSelected: $dessertFilterSelected,
+                       sortByPrice: $sortByPrice,
+                       sortAlphabetically: $sortAlphabetically,
+                       popular: $popular
                    )
                 }
             )
@@ -90,14 +112,14 @@ struct ContentView: View {
         var items = [MenuItem]()
 
         switch index {
-        case 0:
-            items = viewModel.foodItems
-        case 1:
-            items = viewModel.drinkItems
-        case 2:
-            items = viewModel.dessertItems
-        default:
-            break
+            case 0:
+                items = viewModel.foodItems
+            case 1:
+                items = viewModel.drinkItems
+            case 2:
+                items = viewModel.dessertItems
+            default:
+                break
         }
         
         if foodFilterSelected || drinkFilterSelected || dessertFilterSelected {
@@ -118,6 +140,16 @@ struct ContentView: View {
                 
                 return shouldInclude
             }
+        }
+        
+        if sortByPrice {
+             items.sort { $0.price < $1.price }
+        }
+        if sortAlphabetically {
+            items.sort { $0.title < $1.title }
+        }
+        if popular {
+            items.sort { $0.ordersCount < $1.ordersCount }
         }
 
         return items
