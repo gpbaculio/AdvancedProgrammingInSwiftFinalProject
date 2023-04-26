@@ -42,16 +42,21 @@ struct ContentView: View {
             ScrollView {
                 ForEach(categories.indices, id: \.self) { index in
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(categories[index])
-                            .font(.system(size: 21, weight: .bold))
-                            .padding(.leading, 20)
+                        let currentItem = menuItems(forCategoryIndex: index)
+                        
+                        let category = categories[index]
+                        
+                        if(!currentItem.isEmpty){
+                            Text(category)
+                                .font(.system(size: 21, weight: .bold))
+                                .padding(.leading, 20)
+                        }
                         
                         LazyVGrid(
                             columns: [gridItem, gridItem, gridItem],
                             alignment: .center,
                             spacing: 10
                         ) {
-                            let currentItem = menuItems(forCategoryIndex: index)
                             
                             ForEach(currentItem, id: \.id) { item in
                                 NavigationLink(destination: MenuItemDetailsView(item: item)) {
