@@ -11,6 +11,8 @@ import Combine
 
 let categories = ["Food", "Drinks", "Dessert"]
 
+ 
+
 struct ContentView: View {
     let cache = ImageCache()
     @StateObject var viewModel = MenuViewViewModel()
@@ -25,8 +27,13 @@ struct ContentView: View {
                             .font(.system(size: 21, weight: .bold))
                             .padding(.leading, 20)
                         
-                        LazyVGrid(columns: [gridItem, gridItem, gridItem],  alignment: .center, spacing: 10 ) {
+                        LazyVGrid(
+                            columns: [gridItem, gridItem, gridItem],
+                            alignment: .center,
+                            spacing: 10
+                        ) {
                             let currentItem = menuItems(forCategoryIndex: index)
+                            
                             ForEach(currentItem, id: \.id) { item in
                                 NavigationLink(destination: MenuItemDetailsView(item: item)) {
                                     VStack {
@@ -35,9 +42,8 @@ struct ContentView: View {
                                             placeholder: {
                                                 Image(systemName: "photo")
                                                     .resizable()
-                                                    .aspectRatio(1.0, contentMode: .fit)
-                                                    .cornerRadius(10)
-                                                    .foregroundColor(Color.black.opacity(0.35))
+                                                    .aspectRatio(1, contentMode: .fit) 
+                                                    .foregroundColor(.black)
                                             },
                                             imageCache: cache
                                         )
@@ -47,11 +53,12 @@ struct ContentView: View {
                                             .frame(maxWidth: .infinity)
                                             .padding(.vertical, 8)
                                             .padding(.horizontal, 8)
-                                            .background(Color.blue)
                                             .foregroundColor(.white)
-                                            .cornerRadius(6)
+                                            .background(.black)
+                                            .padding(1)
                                             .lineLimit(1)
-                                    }
+                                            .cornerRadius(10)
+                                    } 
                                 }
                             }
                         }
@@ -59,6 +66,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationTitle("Menus")
         }
     }
     
@@ -75,31 +83,6 @@ struct ContentView: View {
        }
    }
 }
-
-struct SecondView: View {
-    var body: some View {
-        VStack {
-            Text("Second Screen")
-                .font(.largeTitle)
-                .padding()
-        }
-        .navigationBarTitle("Second Screen")
-    }
-}
-
-struct ThirdView: View {
-    var body: some View {
-        VStack {
-            Text("Third Screen")
-                .font(.largeTitle)
-                .padding()
-            
-            Spacer()
-        }
-    }
-}
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

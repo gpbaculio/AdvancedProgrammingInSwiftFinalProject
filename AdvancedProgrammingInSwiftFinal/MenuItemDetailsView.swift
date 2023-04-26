@@ -37,12 +37,15 @@ struct MenuItemDetailsView: View {
                 .font(.system(size: 16))
                 .padding(.top, 8)
                 .padding(.horizontal, 16)
-            
+
             Spacer()
         }
         .navigationBarTitle(Text(item.title), displayMode: .inline)
-      
+        .padding()
     }
 }
+
+ 
+
 
  
